@@ -1,0 +1,4 @@
+build:
+  id: 1010
+  version: 1.0.0
+  name: "Default GIT build"
