@@ -17,6 +17,12 @@ spring:
 server:
   port: 8083
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "busrefresh"
+
 build:
   id: Git id
   version: Git version
