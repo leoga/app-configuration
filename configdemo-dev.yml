@@ -18,8 +18,8 @@ management:
 
 logging:
   level:
-    root: DEBUG #(TRACE, DEBUG, INFO, WARN, ERROR)
-    com.info.configdemo.BuildInfoController: TRACE
+    root: INFO #(TRACE, DEBUG, INFO, WARN, ERROR)
+    com.info.configdemo.BuildInfoController: DEBUG
   file:
     name: logs/${spring.application.name}.log
   logback:
