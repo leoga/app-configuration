@@ -17,7 +17,8 @@ management:
         include: "*"
 
 logging:
-  root: INFO #(TRACE, DEBUG, INFO, WARN, ERROR)
+  level:
+    root: INFO #(TRACE, DEBUG, INFO, WARN, ERROR)
   file:
     name: logs/${spring.application.name}.log
   logback:
