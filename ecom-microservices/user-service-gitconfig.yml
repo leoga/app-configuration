@@ -25,6 +25,9 @@ management:
     web:
       exposure:
         include: "busrefresh"
+  tracing:
+    sampling:
+      probability: 1.0
 
 eureka:
   client:
@@ -32,3 +35,13 @@ eureka:
       defaultZone: http://localhost:8761/eureka
     register-with-eureka: true
     fetch-registry: true
+
+logging:
+  level:
+    root: INFO #(TRACE, DEBUG, INFO, WARN, ERROR)
+  file:
+    name: logs/${spring.application.name}.log
+  logback:
+    rollingpolicy:
+      max-file-size: 5MB
+      max-history: 7 # It stores them for 7 days
