@@ -67,6 +67,12 @@ resilience4j:
       retryBreaker:
         max-attempts: 5
         wait-duration: 500ms
+  ratelimiter:
+    instances:
+      retryBreaker:
+        timeout-duration: 0
+        limit-refresh-period: 4
+        limit-for-period: 2
 
 build:
   id: Git id
