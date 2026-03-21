@@ -21,7 +21,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: "busrefresh, prometheus, health"
+        include: "busrefresh, prometheus, health, circuitbreakers, circuitbreakerevents"
   tracing:
     sampling:
       probability: 1.0
