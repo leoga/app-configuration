@@ -93,6 +93,6 @@ resilience4j:
         limit-for-period: 2
 
 build:
-  id: Native id
-  version: Native version
-  name: Native name
+  id: Gitdocker id
+  version: Gitdocker version
+  name: Gitdocker name
