@@ -43,15 +43,15 @@ management:
   tracing:
     sampling:
       probability: 1.0
+    export:
+      zipkin:
+        endpoint: ${ZIPKIN_URL:http://zipkin:9411/api/v2/spans}
   endpoint:
     health:
       show-details: always
   health:
     circuitbreakers:
       enabled: true
-  zipkin:
-    tracing:
-      endpoint: ${ZIPKIN_URL:http://zipkin:9411/api/v2/spans}
 
 eureka:
   client:
