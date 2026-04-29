@@ -18,7 +18,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: "busrefresh,prometheus,health"
+        include: "busrefresh,prometheus,circuitbreakers,circuitbreakerevents"
   tracing:
     sampling:
       probability: 1.0 # It means that it will capture 100% of the requests. This should be 10% or 20% (0.1 or 0.2)
