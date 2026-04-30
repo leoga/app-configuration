@@ -13,6 +13,28 @@ spring:
       hibernate:
         format_sql: true
 
+  cloud:
+    bus:
+      destination: springCloudBus
+    stream:
+      defaultBinder: kafka
+      bindings:
+        springCloudBusInput:
+          destination: springCloudBus
+          group: job-service
+          consumer:
+            max-attempts: 3
+        springCloudBusOutput:
+          destination: springCloudBus
+      kafka:
+        binder:
+          brokers: localhost:9092
+          autoCreateTopics: true
+  kafka:
+    consumer:
+      enable-auto-commit: false
+      auto-offset-reset: latest
+
 server:
   port: 8081
 
@@ -41,6 +63,8 @@ eureka:
 logging:
   level:
     root: INFO #(TRACE, DEBUG, INFO, WARN, ERROR)
+    org.apache.kafka.clients.consumer.internals.OffsetFetcherUtils: ERROR
+    org.apache.kafka.clients.NetworkClient: ERROR
   file:
     name: logs/${spring.application.name}.log
   logback:
