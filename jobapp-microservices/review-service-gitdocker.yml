@@ -13,17 +13,30 @@ spring:
       hibernate:
         format_sql: true
   cloud:
-    function:
-      definition: createReview
+    bus:
+      destination: springCloudBus
     stream:
+      defaultBinder: kafka
       bindings:
         createReview-out-0:
           destination: rating-topic
           content-type: application/json
-          binder: kafka
+
+        springCloudBusInput:
+          destination: springCloudBus
+          group: review-service
+          consumer:
+            max-attempts: 3
+        springCloudBusOutput:
+          destination: springCloudBus
       kafka:
         binder:
           brokers: kafka:19092
+          autoCreateTopics: true
+  kafka:
+    consumer:
+      enable-auto-commit: false
+      auto-offset-reset: latest
 
 server:
   port: 8083
@@ -50,6 +63,8 @@ eureka:
 logging:
   level:
     root: INFO #(TRACE, DEBUG, INFO, WARN, ERROR)
+    org.apache.kafka.clients.consumer.internals.OffsetFetcherUtils: ERROR
+    org.apache.kafka.clients.NetworkClient: ERROR
   file:
     name: logs/${spring.application.name}.log
   logback:
