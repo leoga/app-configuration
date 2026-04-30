@@ -15,16 +15,31 @@ spring:
   cloud:
     function:
       definition: reviewCreated
+    bus:
+      destination: springCloudBus
     stream:
+      defaultBinder: kafka
       bindings:
         reviewCreated-in-0:
           destination: rating-topic
           group: company-group
           content-type: application/json
-          binder: kafka
+
+        springCloudBusInput:
+          destination: springCloudBus
+          group: company-service
+          consumer:
+            max-attempts: 3
+        springCloudBusOutput:
+          destination: springCloudBus
       kafka:
         binder:
           brokers: localhost:9092
+          autoCreateTopics: true
+  kafka:
+    consumer:
+      enable-auto-commit: false
+      auto-offset-reset: latest
 
 server:
   port: 8082
@@ -48,6 +63,8 @@ eureka:
 logging:
   level:
     root: INFO #(TRACE, DEBUG, INFO, WARN, ERROR)
+    org.apache.kafka.clients.consumer.internals.OffsetFetcherUtils: ERROR
+    org.apache.kafka.clients.NetworkClient: ERROR
   file:
     name: logs/${spring.application.name}.log
   logback:
