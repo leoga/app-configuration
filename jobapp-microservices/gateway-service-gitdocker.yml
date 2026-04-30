@@ -11,6 +11,28 @@ spring:
       host: redis
       port: 6379
 
+  cloud:
+    bus:
+      destination: springCloudBus
+    stream:
+      defaultBinder: kafka
+      bindings:
+        springCloudBusInput:
+          destination: springCloudBus
+          group: gateway-service
+          consumer:
+            max-attempts: 3
+        springCloudBusOutput:
+          destination: springCloudBus
+      kafka:
+        binder:
+          brokers: kafka:19092
+          autoCreateTopics: true
+  kafka:
+    consumer:
+      enable-auto-commit: false
+      auto-offset-reset: latest
+
 server:
   port: 8080
 
@@ -35,6 +57,8 @@ management:
 logging:
   level:
     root: INFO #(TRACE, DEBUG, INFO, WARN, ERROR)
+    org.apache.kafka.clients.consumer.internals.OffsetFetcherUtils: ERROR
+    org.apache.kafka.clients.NetworkClient: ERROR
   file:
     name: logs/${spring.application.name}.log
   logback:
