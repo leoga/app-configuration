@@ -26,7 +26,7 @@ spring:
           destination: springCloudBus
       kafka:
         binder:
-          brokers: kafka:9092
+          brokers: kafka-broker:9092
           autoCreateTopics: true
   kafka:
     consumer:
