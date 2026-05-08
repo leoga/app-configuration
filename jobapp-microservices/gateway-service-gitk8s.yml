@@ -1,3 +1,8 @@
+services-url:
+  company-url: http://company-service
+  job-url: http://job-service
+  review-url: http://review-service
+
 spring:
 # SECURITY
   security:
