@@ -51,7 +51,7 @@ management:
       probability: 1.0
     export:
       zipkin:
-        endpoint: ${ZIPKIN_URL:http://zipkin:9411/api/v2/spans}
+        endpoint: ${ZIPKIN_URL:http://zipkin.monitoring:9411/api/v2/spans}
 
 eureka:
   client:
