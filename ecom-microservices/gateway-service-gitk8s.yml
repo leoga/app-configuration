@@ -1,3 +1,9 @@
+services-url:
+  product-url: http://product-service
+  user-url: http://user-service
+  order-url: http://order-service
+  environment: kubernetes
+
 spring:
   rabbitmq:
     host: ${RABBITMQ_HOST:localhost}
